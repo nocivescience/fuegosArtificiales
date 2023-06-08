@@ -1,0 +1,281 @@
+$small-bp: 640px
+$large-bp: 800px
+
+$ui-opacity: 0.5
+$ui-color: rgba(#fff, $ui-opacity)
+$font: 'Russo One', arial, sans-serif
+$letter-spacing: 0.06em
+
+* 
+	position: relative
+	box-sizing: border-box 
+
+
+html,
+body 
+	height: 100%
+
+	
+
+html 
+	background-color: #000
+
+	
+
+body 
+	overflow: hidden
+	color: $ui-color
+	font-family: $font
+	line-height: 1.25
+	letter-spacing: $letter-spacing
+
+	
+
+
+// Utils
+// -------
+
+.hide 
+	opacity: 0
+	visibility: hidden
+
+	
+
+.remove 
+	display: none
+
+	
+
+.blur 
+	filter: blur(12px)
+
+	
+
+
+
+.container 
+	height: 100%
+	display: flex
+	justify-content: center
+	align-items: center
+	
+
+#loading-init 
+	width: 10%
+	align-self: center
+	text-align: center
+	font-size: 2em
+
+	
+
+#stage-container 
+	// Keep menu blur contained
+	overflow: hidden
+	// Let border width add to size
+	box-sizing: initial
+	border: 1px solid #222
+	// Allow border to be hidden when fullscreen
+	margin: -1px
+
+	
+
+#canvas-container 
+	width: 100%
+	height: 100%
+	transition: filter 0.3s
+	
+	canvas 
+		position: absolute
+		// Use lighten blend mode so the sky can be shown lighting up behind the canvases.
+		mix-blend-mode: lighten
+	
+	
+
+	
+
+#controls 
+	position: absolute
+	top: 0
+	width: 100%
+	padding-bottom: 50px
+	display: flex
+	justify-content: space-between
+	transition: opacity 0.3s, visibility 0.3s
+	
+	@media (min-width: $large-bp) 
+			visibility: visible
+		
+			&.hide:hover 
+				opacity: 1
+		
+		
+	
+	
+
+	
+
+#menu 
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+	position: absolute
+	top: 0
+	bottom: 0
+	width: 100%
+	background-color: rgba(0, 0, 0, 0.42)
+	transition: opacity 0.3s, visibility 0.3s
+	
+	&__header 
+		padding: 20px 0 44px
+		font-size: 2em
+		text-transform: uppercase
+	
+	
+	
+	form 
+		width: 240px
+		padding: 0 20px
+		overflow: auto
+	
+	
+	
+	.form-option 
+		margin: 20px 0
+		
+		label 
+			text-transform: uppercase
+		
+		
+		
+		&--select 
+			label 
+				display: block
+				margin-bottom: 6px
+			
+			
+
+			select 
+				display: block
+				width: 100%
+				height: 30px
+				font-size: 1rem
+				font-family: $font
+				color: $ui-color
+				letter-spacing: $letter-spacing
+				background-color: transparent
+				border: 1px solid $ui-color
+				
+				option 
+					background-color: black
+				
+				
+			
+			
+		
+		
+		
+		&--checkbox 
+			label 
+				display: flex
+				align-items: center
+				transition: opacity 0.3s
+				user-select: none
+			
+			
+			
+			input 
+				display: block
+				width: 20px
+				height: 20px
+				margin-right: 8px
+				opacity: $ui-opacity
+			
+			
+		
+		
+		
+		@media (max-width: $large-bp) 
+			select, input 
+				outline: none
+			
+			
+		
+		
+	
+	
+
+	
+
+#close-menu-btn 
+	position: absolute
+	top: 0
+	right: 0
+
+	
+
+.btn 
+	$size: 44px
+	opacity: 0.16
+	width: $size
+	height: $size
+	display: flex
+	user-select: none
+	cursor: default
+	transition: opacity 0.3s
+	
+	&--bright 
+		opacity: 0.5
+	
+	
+	
+	@media (min-width: $large-bp) 
+		&:hover 
+			opacity: 0.32
+		
+		
+		
+		&--bright:hover 
+			opacity: 0.75
+		
+		
+	
+	
+
+	svg 
+		display: block
+		margin: auto
+	
+	
+.render-time
+	position: fixed
+	bottom: 0
+	padding: 6px
+	opacity: 0.75
+	color: white
+	font-family: monospace
+	font-size: 10px
+	user-select: none
+
+.toggle-btn 
+	position: fixed
+	top: 0
+	min-width: 120px
+	padding: 6px
+	border: none
+	outline: none
+	background-color: transparent
+	color: white
+	font-size: 12px
+	text-align: left
+	letter-spacing: 0.03em
+	user-select: none
+	
+	&::after 
+		content: 'Click to Toggle'
+		display: block
+		font-size: 11px
+		opacity: 0.5
+.fireworks
+	opacity: .3
+	z-index: -10

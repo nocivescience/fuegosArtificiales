@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div style="height: 0; width: 0; position: absolute; visibility: hidden">
+      <svg xmlns="http://www.w3.org/2000/svg">
+        <symbol id="icon-play" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </symbol>
+        <symbol id="icon-pause" viewBox="0 0 24 24">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+          <path
+            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+          />
+        </symbol>
+        <symbol id="icon-settings" viewBox="0 0 24 24">
+          <path
+            d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
+          />
+        </symbol>
+        <symbol id="icon-shutter-fast" viewBox="0 0 24 24">
+          <path
+            d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
+          />
+        </symbol>
+        <symbol id="icon-shutter-slow" viewBox="0 0 24 24">
+          <path
+            d="M1 5h2v14H1zm4 0h2v14H5zm17 0H10c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V6c0-.55-.45-1-1-1zM11 17l2.5-3.15L15.29 16l2.5-3.22L21 17H11z"
+          />
+        </symbol>
+      </svg>
+    </div>
+
+    <!-- App -->
+    <div class="container">
+      <div id="loading-init">Loading...</div>
+      <div id="stage-container" class="remove">
+        <div id="canvas-container">
+          <canvas id="trails-canvas"></canvas>
+          <canvas id="main-canvas"></canvas>
+          <canvas class="fireworks"></canvas>
+        </div>
+        <div id="controls">
+          <div id="pause-btn" class="btn">
+            <svg fill="white" width="24" height="24">
+              <use href="#icon-pause" xlink:href="#icon-pause"></use>
+            </svg>
+          </div>
+          <div id="shutter-btn" class="btn">
+            <svg fill="white" width="24" height="24">
+              <use
+                href="#icon-shutter-slow"
+                xlink:href="#icon-shutter-slow"
+              ></use>
+            </svg>
+          </div>
+          <div id="settings-btn" class="btn">
+            <svg fill="white" width="24" height="24">
+              <use href="#icon-settings" xlink:href="#icon-settings"></use>
+            </svg>
+          </div>
+        </div>
+        <div id="menu" class="hide">
+          <div id="close-menu-btn" class="btn btn--bright">
+            <svg fill="white" width="24" height="24">
+              <use href="#icon-close" xlink:href="#icon-close"></use>
+            </svg>
+          </div>
+          <div id="menu__header">Settings</div>
+          <form>
+            <div class="form-option form-option--select">
+              <label>Shell Type</label>
+              <select id="shell-type"></select>
+            </div>
+            <div class="form-option form-option--select">
+              <label>Shell Size</label>
+              <select id="shell-size"></select>
+            </div>
+            <div class="form-option form-option--checkbox">
+              <label id="auto-launch-label"
+                ><input id="auto-launch" type="checkbox" /><span
+                  >Auto Fire</span
+                ></label
+              >
+            </div>
+            <div class="form-option form-option--checkbox">
+              <label id="finale-mode-label"
+                ><input id="finale-mode" type="checkbox" /><span
+                  >Finale Mode</span
+                ></label
+              >
+            </div>
+            <div class="form-option form-option--checkbox">
+              <label id="hide-controls-label"
+                ><input id="hide-controls" type="checkbox" /><span
+                  >Hide Controls</span
+                ></label
+              >
+            </div>
+            <div class="form-option form-option--select">
+              <label>Quality</label>
+              <select id="quality-ui"></select>
+            </div>
+            <div class="form-option form-option--select">
+              <label>Sky Lighting</label>
+              <select id="sky-lighting"></select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/stage.js/0.8.10/stage.web.min.js"
+      integrity="sha512-JsVaAnx0bty4g51KJ2Ge9KyNZCqFu3RwzJ+aC9UdU5QoBtIUNkvXXehoFTbI2/VXdXJebqhDnOJ22072YjzgHw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/fscreen%401.0.1.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/Stage%400.1.4.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/329180/MyMath.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
